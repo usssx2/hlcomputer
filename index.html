@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>H&L COMPUTER</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      color: #333333;
+    }
+
+    .barra-crear {
+      background-color: #000000;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .titulo-barra {
+      position: absolute;
+      left: 30px;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .buscador {
+      display: flex;
+      align-items: center;
+      background-color: #ffffff;
+      border-radius: 5px;
+      padding: 2px 5px;
+    }
+
+    .buscador input {
+      border: none;
+      outline: none;
+      padding: 6px;
+      font-size: 14px;
+      width: 250px;
+    }
+
+    .buscador button {
+      background-color: #333333;
+      color: #ffffff;
+      border: none;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .buscador button:hover {
+      background-color: #555555;
+    }
+
+    .iconos-derecha {
+      position: absolute;
+      right: 30px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .imagen-boton {
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .imagen-boton:hover {
+      transform: scale(1.1);
+    }
+
+    .menu-central {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px 0;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .menu-central a {
+      color: #333333;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .menu-central a:hover {
+      text-decoration: underline;
+    }
+
+    #contenido {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .contenedor-imagen {
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .contenedor-imagen img {
+      width: 100%;
+      display: block;
+    }
+
+    .boton-comprar {
+      position: absolute;
+      left: 40px;
+      bottom: 40px;
+      background-color: #ffffff;
+      color: #333333;
+      font-size: 16px;
+      padding: 10px 20px;
+      border: 2px solid #cccccc;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .boton-comprar:hover {
+      background-color: #f0f0f0;
+      border-color: #999999;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+      transform: translateY(-1px);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-contenido {
+      background-color: #ffffff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      width: 360px;
+      border: 1px solid #dddddd;
+    }
+
+    .modal-contenido h2 {
+      text-align: center;
+      color: #333333;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .cerrar {
+      color: #333333;
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .cerrar:hover {
+      color: #666666;
+    }
+
+    .modal-contenido label {
+      font-size: 14px;
+      color: #333333;
+    }
+
+    .modal-contenido input {
+      width: 100%;
+      margin-bottom: 12px;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      color: #333333;
+    }
+
+    .modal-contenido button {
+      background-color: #ffffff;
+      color: #333333;
+      font-size: 16px;
+      padding: 8px;
+      border: 2px solid #cccccc;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .modal-contenido button:hover {
+      background-color: #f2f2f2;
+      border-color: #999999;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra negra superior -->
+  <div class="barra-crear">
+    <div class="titulo-barra">H&L COMPUTER</div>
+    <form class="buscador" onsubmit="alert('Buscando: ' + document.getElementById('buscar').value); return false;">
+      <input type="text" id="buscar" placeholder="Buscar...">
+      <button type="submit">Buscar</button>
+    </form>
+    <div class="iconos-derecha">
+      <img src="imagenes/user.png" alt="Crear usuario" class="imagen-boton" onclick="document.getElementById('modalCrear').style.display='block'">
+      <img src="imagenes/carrito.png" alt="Carrito de compras" class="imagen-boton" onclick="alert('Abrir carrito de compras');">
+    </div>
+  </div>
+
+  <!-- Menú centrado -->
+  <header>
+    <nav class="menu-central">
+      <a onclick="cargarInicio()">Inicio</a>
+      <a onclick="cargarProductos()">Productos</a>
+      <a onclick="cargarCategorias()">Categorías</a>
+      <a onclick="cargarOfertas()">Ofertas</a>
+    </nav>
+  </header>
+
+  <!-- Contenido dinámico -->
+  <div id="contenido">
+    <div class="contenedor-imagen">
+      <img src="imagenes/central.jpeg" alt="Tecnología avanzada">
+      <button class="boton-comprar">COMPRAR AHORA</button>
+    </div>
+  </div>
+
+  <!-- Modal de registro -->
+  <div id="modalCrear" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="document.getElementById('modalCrear').style.display='none'">&times;</span>
+      <h2>Crear Usuario</h2>
+      <form>
+        <label for="nuevoUsuario">Usuario:</label>
+        <input type="text" id="nuevoUsuario" name="nuevoUsuario" required>
+        <label for="nuevaContra">Contraseña:</label>
+        <input type="password" id="nuevaContra" name="nuevaContra" required>
+        <label for="confirmarContra">Confirmar Contraseña:</label>
+        <input type="password" id="confirmarContra" name="confirmarContra" required>
+        <button type="submit">Registrar</button>
+      </form>
+    </div>
+  </div>
+
+    <!-- Script para cargar contenido -->
+  <script>
+    // Cargar Inicio por defecto al abrir la página
+    document.addEventListener('DOMContentLoaded', cargarInicio);
+
+    function cargarInicio() {
+      document.getElementById('contenido').innerHTML = `
+        <div class="contenedor-imagen">
+          <img src="imagenes/central.jpeg" alt="Tecnología avanzada">
+          <button class="boton-comprar">COMPRAR AHORA</button>
+        </div>
+      `;
+    }
+
+function cargarCategorias() {
+  document.getElementById('contenido').innerHTML = `
+    <div style="background-color:#000000; padding:15px 30px; text-align:center; border-radius:8px;">
+      <h1 style="color:#ffffff; margin:0; font-size:24px;">CATEGORIAS</h1>
+    </div>
+
+    <div style="max-width:1000px; margin:30px auto 60px; padding:0 20px; 
+                display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:24px;">
+
+      <!-- LAPTOPS -->
+      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px; 
+                  padding:16px; text-align:center; cursor:pointer;" 
+           onclick="alert('Abrir categoría: LAPTOPS')">
+        <img src="imagenes/laptop.png" alt="Imagen de computadora portátil" 
+             style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
+        <div style="font-size:16px; font-weight:600; color:#333333;">LAPTOPS</div>
+      </div>
+
+      <!-- CELULARES -->
+      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px; 
+                  padding:16px; text-align:center; cursor:pointer;" 
+           onclick="alert('Abrir categoría: CELULARES')">
+        <img src="imagenes/celular.png" alt="Imagen de teléfono celular" 
+             style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
+        <div style="font-size:16px; font-weight:600; color:#333333;">CELULARES</div>
+      </div>
+
+      <!-- DESKTOP -->
+      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px; 
+                  padding:16px; text-align:center; cursor:pointer;" 
+           onclick="alert('Abrir categoría: DESKTOP')">
+        <img src="imagenes/pc.png" alt="Imagen de computadora de escritorio" 
+             style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
+        <div style="font-size:16px; font-weight:600; color:#333333;">DESKTOP</div>
+      </div>
+
+      <!-- AIO -->
+      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px; 
+                  padding:16px; text-align:center; cursor:pointer;" 
+           onclick="alert('Abrir categoría: AIO')">
+        <img src="imagenes/aio.png" alt="Imagen de computadora All In One" 
+             style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
+        <div style="font-size:16px; font-weight:600; color:#333333;">AIO</div>
+      </div>
+
+      <!-- IMPRESORA (NUEVA) -->
+      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px; 
+                  padding:16px; text-align:center; cursor:pointer;" 
+           onclick="alert('Abrir categoría: IMPRESORA')">
+        <img src="imagenes/impresora.png" alt="Imagen de impresora" 
+             style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
+        <div style="font-size:16px; font-weight:600; color:#333333;">IMPRESORA</div>
+      </div>
+
+    </div>
+  `;
+}
+
+    function cargarProductos() {
+      document.getElementById('contenido').innerHTML = `
+        <h2 style="text-align:center; margin-top:40px;">Sección de productos en construcción</h2>
+      `;
+    }
+
+    function cargarOfertas() {
+      document.getElementById('contenido').innerHTML = `
+        <h2 style="text-align:center; margin-top:40px;">Sección de ofertas en construcción</h2>
+      `;
+    }
+  </script>
+</body>
+</html>
