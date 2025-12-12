@@ -268,23 +268,25 @@
     </div>
   </div>
 
-  <!-- Modal de registro -->
-  <div id="modalCrear" class="modal">
-    <div class="modal-contenido">
-      <span class="cerrar" onclick="document.getElementById('modalCrear').style.display='none'">&times;</span>
-      <h2>Crear Usuario</h2>
-      <form>
-        <label for="nuevoUsuario">Usuario:</label>
-        <input type="text" id="nuevoUsuario" name="nuevoUsuario" required>
-        <label for="nuevaContra">Contraseña:</label>
-        <input type="password" id="nuevaContra" name="nuevaContra" required>
-        <label for="confirmarContra">Confirmar Contraseña:</label>
-        <input type="password" id="confirmarContra" name="confirmarContra" required>
-        <button type="submit">Registrar</button>
-      </form>
-    </div>
-  </div>
+<!-- Modal de registro -->
+<div id="modalCrear" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="document.getElementById('modalCrear').style.display='none'">&times;</span>
+    <h2>Crear Usuario</h2>
 
+    <form>
+      <input type="email" id="correo" name="correo" placeholder="Correo Electrónico" required>
+
+      <input type="text" id="nuevoUsuario" name="nuevoUsuario" placeholder="Usuario" required>
+
+      <input type="password" id="nuevaContra" name="nuevaContra" placeholder="Contraseña" required>
+
+      <input type="password" id="confirmarContra" name="confirmarContra" placeholder="Confirmar Contraseña" required>
+
+      <button type="submit">Registrar</button>
+    </form>
+  </div>
+</div>
     <!-- Script para cargar contenido -->
   <script>
     // Cargar Inicio por defecto al abrir la página
@@ -387,3 +389,4 @@ function cargarCategorias() {
   </script>
 </body>
 </html>
+
