@@ -229,7 +229,8 @@
     </form>
     <div class="iconos-derecha">
       <img src="imagenes/user.png" alt="Crear usuario" class="imagen-boton" onclick="document.getElementById('modalCrear').style.display='block'">
-      <img src="imagenes/carrito.png" alt="Carrito de compras" class="imagen-boton" onclick="alert('Abrir carrito de compras');">
+    <img src="imagenes/carrito.png" alt="Carrito de compras" class="imagen-boton" onclick="document.getElementById('modalCarrito').style.display='block'">
+
     </div>
   </div>
 
@@ -243,11 +244,26 @@
     </nav>
   </header>
 
+  <!-- Modal del carrito -->
+<div id="modalCarrito" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="document.getElementById('modalCarrito').style.display='none'">&times;</span>
+    <h2 style="text-align:center;">CARRITO</h2>
+    <p style="text-align:center; font-size:16px; margin:20px 0;">Carrito vacío.</p>
+    <div style="text-align:center;">
+     <a href="#" onclick="document.getElementById('modalCarrito').style.display='none'; cargarProductos()" style="color:#333333; font-weight:bold; text-decoration:none;">
+  Continuar Comprando →
+</a>
+      </a>
+    </div>
+  </div>
+</div>
+
   <!-- Contenido dinámico -->
   <div id="contenido">
     <div class="contenedor-imagen">
       <img src="imagenes/central.jpeg" alt="Tecnología avanzada">
-      <button class="boton-comprar">COMPRAR AHORA</button>
+<button class="boton-comprar" onclick="cargarOfertas()">COMPRAR AHORA</button>
     </div>
   </div>
 
@@ -273,14 +289,14 @@
     // Cargar Inicio por defecto al abrir la página
     document.addEventListener('DOMContentLoaded', cargarInicio);
 
-    function cargarInicio() {
-      document.getElementById('contenido').innerHTML = `
-        <div class="contenedor-imagen">
-          <img src="imagenes/central.jpeg" alt="Tecnología avanzada">
-          <button class="boton-comprar">COMPRAR AHORA</button>
-        </div>
-      `;
-    }
+  function cargarInicio() {
+  document.getElementById('contenido').innerHTML = `
+    <div class="contenedor-imagen">
+      <img src="imagenes/central.jpeg" alt="Tecnología avanzada">
+      <button class="boton-comprar" onclick="cargarOfertas()">COMPRAR AHORA</button>
+    </div>
+  `;
+}
 
 function cargarCategorias() {
   document.getElementById('contenido').innerHTML = `
