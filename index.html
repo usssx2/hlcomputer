@@ -254,6 +254,7 @@
      <a href="#" onclick="document.getElementById('modalCarrito').style.display='none'; cargarProductos()" style="color:#333333; font-weight:bold; text-decoration:none;">
   Continuar Comprando →
 </a>
+
       </a>
     </div>
   </div>
@@ -289,11 +290,27 @@
     // Cargar Inicio por defecto al abrir la página
     document.addEventListener('DOMContentLoaded', cargarInicio);
 
-  function cargarInicio() {
+ function cargarInicio() {
   document.getElementById('contenido').innerHTML = `
     <div class="contenedor-imagen">
       <img src="imagenes/central.jpeg" alt="Tecnología avanzada">
       <button class="boton-comprar" onclick="cargarOfertas()">COMPRAR AHORA</button>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+      <span onclick="cargarCategorias()" style="
+        font-size:35px;
+        font-weight:bold;
+        text-decoration:underline;
+        color:#333333;
+        cursor:pointer;
+        display:inline-block;
+        padding:10px 20px;
+        border-radius:6px;
+        transition:background-color 0.3s ease;
+      " onmouseover="this.style.backgroundColor='#f0f0f0'" onmouseout="this.style.backgroundColor='transparent'">
+        Todos nuestros productos a tu alcance
+      </span>
     </div>
   `;
 }
