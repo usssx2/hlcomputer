@@ -270,20 +270,31 @@
 
 <!-- Modal de registro -->
 <div id="modalCrear" class="modal">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="document.getElementById('modalCrear').style.display='none'">&times;</span>
-    <h2>Crear Usuario</h2>
+  <div class="modal-contenido" style="position:relative;">
+    <span class="cerrar" onclick="document.getElementById('modalCrear').style.display='none'" 
+          style="position:absolute; top:10px; right:14px; font-size:24px; font-weight:bold; cursor:pointer;">
+      &times;
+    </span>
 
-    <form>
-      <input type="email" id="correo" name="correo" placeholder="Correo Electrónico" required>
+    <h2 style="text-align:center;">Crear Usuario</h2>
 
-      <input type="text" id="nuevoUsuario" name="nuevoUsuario" placeholder="Usuario" required>
+    <form style="width:100%; display:flex; flex-direction:column; align-items:center;">
+      <input type="email" id="correo" name="correo" placeholder="Correo Electrónico" required
+             style="width:80%; margin-bottom:12px; padding:8px; font-size:14px; border:1px solid #ccc; border-radius:5px; text-align:center;">
 
-      <input type="password" id="nuevaContra" name="nuevaContra" placeholder="Contraseña" required>
+      <input type="text" id="nuevoUsuario" name="nuevoUsuario" placeholder="Usuario" required
+             style="width:80%; margin-bottom:12px; padding:8px; font-size:14px; border:1px solid #ccc; border-radius:5px; text-align:center;">
 
-      <input type="password" id="confirmarContra" name="confirmarContra" placeholder="Confirmar Contraseña" required>
+      <input type="password" id="nuevaContra" name="nuevaContra" placeholder="Contraseña" required
+             style="width:80%; margin-bottom:12px; padding:8px; font-size:14px; border:1px solid #ccc; border-radius:5px; text-align:center;">
 
-      <button type="submit">Registrar</button>
+      <input type="password" id="confirmarContra" name="confirmarContra" placeholder="Confirmar Contraseña" required
+             style="width:80%; margin-bottom:20px; padding:8px; font-size:14px; border:1px solid #ccc; border-radius:5px; text-align:center;">
+
+      <button type="submit"
+              style="width:80%; padding:10px; font-size:16px; font-weight:bold; border:2px solid #ccc; border-radius:6px; background-color:#fff; color:#333; cursor:pointer;">
+        Registrar
+      </button>
     </form>
   </div>
 </div>
@@ -389,4 +400,5 @@ function cargarCategorias() {
   </script>
 </body>
 </html>
+
 
