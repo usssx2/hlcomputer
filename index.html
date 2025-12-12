@@ -298,6 +298,7 @@
     </form>
   </div>
 </div>
+
     <!-- Script para cargar contenido -->
   <script>
     // Cargar Inicio por defecto al abrir la página
@@ -334,53 +335,105 @@ function cargarCategorias() {
       <h1 style="color:#ffffff; margin:0; font-size:24px;">CATEGORIAS</h1>
     </div>
 
-    <div style="max-width:1000px; margin:30px auto 60px; padding:0 20px; 
+    <div style="max-width:1000px; margin:30px auto 60px; padding:0 20px;
                 display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:24px;">
 
       <!-- LAPTOPS -->
-      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px; 
-                  padding:16px; text-align:center; cursor:pointer;" 
-           onclick="alert('Abrir categoría: LAPTOPS')">
-        <img src="imagenes/laptop.png" alt="Imagen de computadora portátil" 
+      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px;
+                  padding:16px; text-align:center; cursor:pointer;"
+           onclick="mostrarFiltrosLaptop()">
+        <img src="imagenes/laptop.png" alt="Imagen de computadora portátil"
              style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
         <div style="font-size:16px; font-weight:600; color:#333333;">LAPTOPS</div>
       </div>
 
       <!-- CELULARES -->
-      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px; 
-                  padding:16px; text-align:center; cursor:pointer;" 
+      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px;
+                  padding:16px; text-align:center; cursor:pointer;"
            onclick="alert('Abrir categoría: CELULARES')">
-        <img src="imagenes/celular.png" alt="Imagen de teléfono celular" 
+        <img src="imagenes/celular.png" alt="Imagen de teléfono celular"
              style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
         <div style="font-size:16px; font-weight:600; color:#333333;">CELULARES</div>
       </div>
 
       <!-- DESKTOP -->
-      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px; 
-                  padding:16px; text-align:center; cursor:pointer;" 
+      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px;
+                  padding:16px; text-align:center; cursor:pointer;"
            onclick="alert('Abrir categoría: DESKTOP')">
-        <img src="imagenes/pc.png" alt="Imagen de computadora de escritorio" 
+        <img src="imagenes/pc.png" alt="Imagen de computadora de escritorio"
              style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
         <div style="font-size:16px; font-weight:600; color:#333333;">DESKTOP</div>
       </div>
 
       <!-- AIO -->
-      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px; 
-                  padding:16px; text-align:center; cursor:pointer;" 
+      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px;
+                  padding:16px; text-align:center; cursor:pointer;"
            onclick="alert('Abrir categoría: AIO')">
-        <img src="imagenes/aio.png" alt="Imagen de computadora All In One" 
+        <img src="imagenes/aio.png" alt="Imagen de computadora All In One"
              style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
         <div style="font-size:16px; font-weight:600; color:#333333;">AIO</div>
       </div>
 
-      <!-- IMPRESORA (NUEVA) -->
-      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px; 
-                  padding:16px; text-align:center; cursor:pointer;" 
+      <!-- IMPRESORA -->
+      <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px;
+                  padding:16px; text-align:center; cursor:pointer;"
            onclick="alert('Abrir categoría: IMPRESORA')">
-        <img src="imagenes/impresora.png" alt="Imagen de impresora" 
+        <img src="imagenes/impresora.png" alt="Imagen de impresora"
              style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
         <div style="font-size:16px; font-weight:600; color:#333333;">IMPRESORA</div>
       </div>
+
+    </div>
+  `;
+}
+function mostrarFiltrosLaptop() {
+  document.getElementById('contenido').innerHTML = `
+    <div style="display:flex; font-family:'Roboto', sans-serif;">
+
+      <!-- FILTROS LATERALES -->
+      <aside style="width:260px; padding:20px 10px 20px 30px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+          <h2 style="font-size:22px; color:#333;">Filtrar:</h2>
+          <span id="btnEliminarFiltros" onclick="eliminarTodosLosFiltros()" 
+                style="display:none; font-size:16px; color:#ff6600; text-decoration:underline; cursor:pointer;">
+            Eliminar todos
+          </span>
+        </div>
+
+        <!-- Disponibilidad -->
+        <div style="margin-bottom:30px;">
+          <div onclick="toggleFiltro('filtroDisponibilidad', this)" 
+               style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+            Disponibilidad <span style="float:right;">⬇️</span>
+          </div>
+          <div id="filtroDisponibilidad" style="margin-top:10px;">
+            <label><input type="checkbox" onchange="mostrarEliminar()"> En existencia</label><br>
+            <label><input type="checkbox" onchange="mostrarEliminar()"> Agotado</label>
+          </div>
+        </div>
+
+        <!-- Precio -->
+        <div style="margin-bottom:30px;">
+          <div onclick="toggleFiltro('filtroPrecio', this)" 
+               style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+            Precio <span style="float:right;">⬇️</span>
+          </div>
+          <div id="filtroPrecio" style="margin-top:10px;">
+            <input type="number" placeholder="$ De" onchange="mostrarEliminar()" 
+                   style="margin-right:10px; padding:6px; width:90px;">
+            <input type="number" placeholder="$ Para" onchange="mostrarEliminar()" 
+                   style="padding:6px; width:90px;">
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- CONTENIDO PRINCIPAL -->
+      <main style="flex-grow:1; padding:30px;">
+        <div style="background-color:#000000; padding:15px 30px; text-align:center; border-radius:8px;">
+          <h1 style="color:#ffffff; margin:0; font-size:24px;">LAPTOP</h1>
+        </div>
+      </main>
 
     </div>
   `;
@@ -397,8 +450,21 @@ function cargarCategorias() {
         <h2 style="text-align:center; margin-top:40px;">Sección de ofertas en construcción</h2>
       `;
     }
+
+function toggleFiltro(id, encabezado) {
+  const contenido = document.getElementById(id);
+  const flecha = encabezado.querySelector('span');
+
+  if (contenido.style.display === 'none') {
+    contenido.style.display = 'block';
+    flecha.textContent = '⬇️'; // Flecha negra/blanca hacia abajo
+  } else {
+    contenido.style.display = 'none';
+    flecha.textContent = '⬆️'; // Flecha negra/blanca hacia arriba
+  }
+}
+
   </script>
 </body>
 </html>
-
 
