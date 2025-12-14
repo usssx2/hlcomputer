@@ -339,12 +339,21 @@
   <script>
     // Cargar Inicio por defecto al abrir la página
     document.addEventListener('DOMContentLoaded', cargarInicio);
-
- function cargarInicio() {
+function cargarInicio() {
   document.getElementById('contenido').innerHTML = `
-    <div class="contenedor-imagen">
-      <img src="imagenes/central.jpeg" alt="Tecnología avanzada">
+    <div class="contenedor-imagen" style="position:relative;">
+      <img id="imagenSlider" src="imagenes/H&L COMPUTER.png" alt="Tecnología avanzada">
       <button class="boton-comprar" onclick="cargarOfertas()">COMPRAR AHORA</button>
+
+      <!-- Controles debajo de la imagen -->
+      <div style="position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:12px;">
+        <div onclick="cambiarImagen(-1)" style="cursor:pointer; font-size:24px; color:#333;">←</div>
+        <div id="indicadores" style="display:flex; gap:8px;">
+          <div class="punto" style="width:12px; height:12px; border-radius:50%; background-color:#000;"></div>
+          <div class="punto" style="width:12px; height:12px; border-radius:50%; border:2px solid #000;"></div>
+        </div>
+        <div onclick="cambiarImagen(1)" style="cursor:pointer; font-size:24px; color:#333;">→</div>
+      </div>
     </div>
 
     <div style="text-align:center; margin-top:20px;">
@@ -358,11 +367,37 @@
         padding:10px 20px;
         border-radius:6px;
         transition:background-color 0.3s ease;
-      " onmouseover="this.style.backgroundColor='#f0f0f0'" onmouseout="this.style.backgroundColor='transparent'">
+      " onmouseover="this.style.backgroundColor='#f0f0f0'" 
+        onmouseout="this.style.backgroundColor='transparent'">
         Todos nuestros productos a tu alcance
       </span>
     </div>
   `;
+
+  // Slider automático
+  let indice = 0;
+  const imagenes = ["imagenes/H&L COMPUTER.png", "imagenes/central.jpeg"];
+  const puntos = () => document.querySelectorAll('.punto');
+
+  function actualizarSlider() {
+    const img = document.getElementById('imagenSlider');
+    if (img) img.src = imagenes[indice];
+
+    puntos().forEach((p, i) => {
+      p.style.backgroundColor = i === indice ? '#000' : 'transparent';
+      p.style.border = i === indice ? 'none' : '2px solid #000';
+    });
+  }
+
+  window.cambiarImagen = function(direccion) {
+    indice = (indice + direccion + imagenes.length) % imagenes.length;
+    actualizarSlider();
+  };
+
+  setTimeout(() => {
+    indice = 1;
+    actualizarSlider();
+  }, 5000);
 }
 
 function cargarCategorias() {
@@ -861,6 +896,7 @@ function toggleFiltro(id, encabezado) {
   </script>
 </body>
 </html>
+
 
 
 
