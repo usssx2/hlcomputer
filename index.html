@@ -253,6 +253,8 @@
       <a onclick="cargarProductos()">Catálogo</a>
       <a onclick="cargarCategorias()">Categorías</a>
       <a onclick="cargarOfertas()">Ofertas</a>
+      <a onclick="cargarContacto()">Contáctanos</a>
+
     </nav>
   </header>
 
@@ -793,6 +795,52 @@ function mostrarFiltrosImpresora() {
       `;
     }
 
+    function cargarContacto() {
+  document.getElementById('contenido').innerHTML = `
+    <div style="font-family:'Roboto', sans-serif; max-width:600px; margin:40px auto; padding:20px;">
+      <h2 style="text-align:center; font-size:24px; margin-bottom:30px;">Contáctanos</h2>
+
+      <!-- WhatsApp -->
+      <div onclick="window.open('https://wa.me/18092983463','_blank')"
+           style="display:flex; align-items:center; gap:16px; background-color:#f7f7f7;
+                  border:1px solid #dddddd; border-radius:12px; padding:16px; cursor:pointer;
+                  box-shadow:0 4px 8px rgba(0,0,0,0.05); transition:background-color 0.3s ease;"
+           onmouseover="this.style.backgroundColor='#e8f5e9'"
+           onmouseout="this.style.backgroundColor='#f7f7f7'">
+        <img src="imagenes/numero.png" alt="WhatsApp" style="width:40px; height:40px;">
+        <div style="font-size:18px; font-weight:600; color:#333333;">809 - 298 - 3463</div>
+      </div>
+
+      <div style="height:20px;"></div>
+
+      <!-- Instagram -->
+      <div onclick="window.open('https://www.instagram.com/iamramdom_','_blank')"
+           style="display:flex; align-items:center; gap:16px; background-color:#f7f7f7;
+                  border:1px solid #dddddd; border-radius:12px; padding:16px; cursor:pointer;
+                  box-shadow:0 4px 8px rgba(0,0,0,0.05); transition:background-color 0.3s ease;"
+           onmouseover="this.style.backgroundColor='#fce4ec'"
+           onmouseout="this.style.backgroundColor='#f7f7f7'">
+        <img src="imagenes/instagram.png" alt="Instagram" style="width:40px; height:40px;">
+        <div style="font-size:18px; font-weight:600; color:#333333;">@iamramdom_</div>
+      </div>
+
+      <div style="height:20px;"></div>
+
+      <!-- Gmail -->
+      <div onclick="window.location.href='mailto:jholguinleocadio715@gmail.com?subject=Contacto%20desde%20H&L%20Computer&body=Hola,%20necesito%20información%20sobre...'"
+           style="display:flex; align-items:center; gap:16px; background-color:#f7f7f7;
+                  border:1px solid #dddddd; border-radius:12px; padding:16px; cursor:pointer;
+                  box-shadow:0 4px 8px rgba(0,0,0,0.05); transition:background-color 0.3s ease;"
+           onmouseover="this.style.backgroundColor='#e3f2fd'"
+           onmouseout="this.style.backgroundColor='#f7f7f7'">
+        <img src="imagenes/gmail.png" alt="Correo" style="width:40px; height:40px;">
+        <div style="font-size:18px; font-weight:600; color:#333333;">jholguinleocadio715@gmail.com</div>
+      </div>
+
+    </div>
+  `;
+}
+    
 function toggleFiltro(id, encabezado) {
   const contenido = document.getElementById(id);
   const flecha = encabezado.querySelector('span');
@@ -809,6 +857,7 @@ function toggleFiltro(id, encabezado) {
   </script>
 </body>
 </html>
+
 
 
 
