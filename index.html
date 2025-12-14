@@ -304,7 +304,7 @@
     // Cargar Inicio por defecto al abrir la página
     document.addEventListener('DOMContentLoaded', cargarInicio);
 
- function cargarInicio() {
+function cargarInicio() {
   document.getElementById('contenido').innerHTML = `
     <div class="contenedor-imagen">
       <img src="imagenes/central.jpeg" alt="Tecnología avanzada">
@@ -350,7 +350,7 @@ function cargarCategorias() {
       <!-- CELULARES -->
       <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px;
                   padding:16px; text-align:center; cursor:pointer;"
-           onclick="alert('Abrir categoría: CELULARES')">
+           onclick="mostrarFiltrosCelulares()">
         <img src="imagenes/celular.png" alt="Imagen de teléfono celular"
              style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
         <div style="font-size:16px; font-weight:600; color:#333333;">CELULARES</div>
@@ -359,7 +359,7 @@ function cargarCategorias() {
       <!-- DESKTOP -->
       <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px;
                   padding:16px; text-align:center; cursor:pointer;"
-           onclick="alert('Abrir categoría: DESKTOP')">
+           onclick="mostrarFiltrosDesktop()">
         <img src="imagenes/pc.png" alt="Imagen de computadora de escritorio"
              style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
         <div style="font-size:16px; font-weight:600; color:#333333;">DESKTOP</div>
@@ -368,7 +368,7 @@ function cargarCategorias() {
       <!-- AIO -->
       <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px;
                   padding:16px; text-align:center; cursor:pointer;"
-           onclick="alert('Abrir categoría: AIO')">
+           onclick="mostrarFiltrosAIO()">
         <img src="imagenes/aio.png" alt="Imagen de computadora All In One"
              style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
         <div style="font-size:16px; font-weight:600; color:#333333;">AIO</div>
@@ -377,7 +377,7 @@ function cargarCategorias() {
       <!-- IMPRESORA -->
       <div style="background-color:#f7f7f7; border:1px solid #dddddd; border-radius:12px;
                   padding:16px; text-align:center; cursor:pointer;"
-           onclick="alert('Abrir categoría: IMPRESORA')">
+           onclick="mostrarFiltrosImpresora()">
         <img src="imagenes/impresora.png" alt="Imagen de impresora"
              style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
         <div style="font-size:16px; font-weight:600; color:#333333;">IMPRESORA</div>
@@ -386,59 +386,296 @@ function cargarCategorias() {
     </div>
   `;
 }
+
+
 function mostrarFiltrosLaptop() {
   document.getElementById('contenido').innerHTML = `
-    <div style="display:flex; font-family:'Roboto', sans-serif;">
+    <div style="font-family:'Roboto', sans-serif;">
 
-      <!-- FILTROS LATERALES -->
-      <aside style="width:260px; padding:20px 10px 20px 30px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-          <h2 style="font-size:22px; color:#333;">Filtrar:</h2>
-          <span id="btnEliminarFiltros" onclick="eliminarTodosLosFiltros()" 
-                style="display:none; font-size:16px; color:#ff6600; text-decoration:underline; cursor:pointer;">
-            Eliminar todos
-          </span>
+      <!-- BARRA NEGRA CON FLECHA Y TÍTULO CENTRADO -->
+      <div style="background-color:#000000; padding:15px 30px; display:flex; align-items:center; justify-content:space-between; border-radius:8px; position:relative;">
+        <div onclick="cargarCategorias()" 
+             style="position:absolute; left:30px; font-size:24px; color:#ffffff; cursor:pointer;">
+          ←
         </div>
-
-        <!-- Disponibilidad -->
-        <div style="margin-bottom:30px;">
-          <div onclick="toggleFiltro('filtroDisponibilidad', this)" 
-               style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
-            Disponibilidad <span style="float:right;">⬇</span>
-          </div>
-          <div id="filtroDisponibilidad" style="margin-top:10px;">
-            <label><input type="checkbox" onchange="mostrarEliminar()"> En existencia</label><br>
-            <label><input type="checkbox" onchange="mostrarEliminar()"> Agotado</label>
-          </div>
-        </div>
-
-        <!-- Precio -->
-        <div style="margin-bottom:30px;">
-          <div onclick="toggleFiltro('filtroPrecio', this)" 
-               style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
-            Precio <span style="float:right;">⬇</span>
-          </div>
-          <div id="filtroPrecio" style="margin-top:10px;">
-            <input type="number" placeholder="$ De" onchange="mostrarEliminar()" 
-                   style="margin-right:10px; padding:6px; width:90px;">
-            <input type="number" placeholder="$ Para" onchange="mostrarEliminar()" 
-                   style="padding:6px; width:90px;">
-          </div>
-        </div>
-
-      </aside>
-
-      <!-- CONTENIDO PRINCIPAL -->
-      <main style="flex-grow:1; padding:30px;">
-        <div style="background-color:#000000; padding:15px 30px; text-align:center; border-radius:8px;">
+        <div style="width:100%; text-align:center;">
           <h1 style="color:#ffffff; margin:0; font-size:24px;">LAPTOP</h1>
         </div>
-      </main>
+      </div>
 
+      <div style="display:flex; margin-top:20px;">
+
+        <!-- FILTROS LATERALES -->
+        <aside style="width:260px; padding:20px 10px 20px 30px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+            <h2 style="font-size:22px; color:#333;">Filtrar:</h2>
+            <span id="btnEliminarFiltros" onclick="eliminarTodosLosFiltros()" 
+                  style="display:none; font-size:16px; color:#ff6600; text-decoration:underline; cursor:pointer;">
+              Eliminar todos
+            </span>
+          </div>
+
+          <!-- Disponibilidad -->
+          <div style="margin-bottom:30px;">
+            <div onclick="toggleFiltro('filtroDisponibilidad', this)" 
+                 style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+              Disponibilidad <span style="float:right;">⬇</span>
+            </div>
+            <div id="filtroDisponibilidad" style="margin-top:10px;">
+              <label><input type="checkbox" onchange="mostrarEliminar()"> En existencia</label><br>
+              <label><input type="checkbox" onchange="mostrarEliminar()"> Agotado</label>
+            </div>
+          </div>
+
+          <!-- Precio -->
+          <div style="margin-bottom:30px;">
+            <div onclick="toggleFiltro('filtroPrecio', this)" 
+                 style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+              Precio <span style="float:right;">⬇</span>
+            </div>
+            <div id="filtroPrecio" style="margin-top:10px;">
+              <input type="number" placeholder="$ De" onchange="mostrarEliminar()" 
+                     style="margin-right:10px; padding:6px; width:90px;">
+              <input type="number" placeholder="$ Para" onchange="mostrarEliminar()" 
+                     style="padding:6px; width:90px;">
+            </div>
+          </div>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main style="flex-grow:1; padding:30px;">
+          <!-- Aquí irán los productos filtrados -->
+        </main>
+
+      </div>
+    </div>
+  `;
+}
+function mostrarFiltrosCelulares() {
+  document.getElementById('contenido').innerHTML = `
+    <div style="font-family:'Roboto', sans-serif;">
+
+      <div style="background-color:#000000; padding:15px 30px; display:flex; align-items:center; justify-content:space-between; border-radius:8px; position:relative;">
+        <div onclick="cargarCategorias()" 
+             style="position:absolute; left:30px; font-size:24px; color:#ffffff; cursor:pointer;">
+          ←
+        </div>
+        <div style="width:100%; text-align:center;">
+          <h1 style="color:#ffffff; margin:0; font-size:24px;">CELULARES</h1>
+        </div>
+      </div>
+
+      <div style="display:flex; margin-top:20px;">
+        <aside style="width:260px; padding:20px 10px 20px 30px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+            <h2 style="font-size:22px; color:#333;">Filtrar:</h2>
+            <span id="btnEliminarFiltros" onclick="eliminarTodosLosFiltros()" 
+                  style="display:none; font-size:16px; color:#ff6600; text-decoration:underline; cursor:pointer;">
+              Eliminar todos
+            </span>
+          </div>
+
+          <div style="margin-bottom:30px;">
+            <div onclick="toggleFiltro('filtroDisponibilidad', this)" 
+                 style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+              Disponibilidad <span style="float:right;">⬇</span>
+            </div>
+            <div id="filtroDisponibilidad" style="margin-top:10px;">
+              <label><input type="checkbox" onchange="mostrarEliminar()"> En existencia</label><br>
+              <label><input type="checkbox" onchange="mostrarEliminar()"> Agotado</label>
+            </div>
+          </div>
+
+          <div style="margin-bottom:30px;">
+            <div onclick="toggleFiltro('filtroPrecio', this)" 
+                 style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+              Precio <span style="float:right;">⬇</span>
+            </div>
+            <div id="filtroPrecio" style="margin-top:10px;">
+              <input type="number" placeholder="$ De" onchange="mostrarEliminar()" 
+                     style="margin-right:10px; padding:6px; width:90px;">
+              <input type="number" placeholder="$ Para" onchange="mostrarEliminar()" 
+                     style="padding:6px; width:90px;">
+            </div>
+          </div>
+        </aside>
+
+        <main style="flex-grow:1; padding:30px;"></main>
+      </div>
     </div>
   `;
 }
 
+function mostrarFiltrosDesktop() {
+  document.getElementById('contenido').innerHTML = `
+    <div style="font-family:'Roboto', sans-serif;">
+
+      <div style="background-color:#000000; padding:15px 30px; display:flex; align-items:center; justify-content:space-between; border-radius:8px; position:relative;">
+        <div onclick="cargarCategorias()" 
+             style="position:absolute; left:30px; font-size:24px; color:#ffffff; cursor:pointer;">
+          ←
+        </div>
+        <div style="width:100%; text-align:center;">
+          <h1 style="color:#ffffff; margin:0; font-size:24px;">DESKTOP</h1>
+        </div>
+      </div>
+
+      <div style="display:flex; margin-top:20px;">
+
+        <aside style="width:260px; padding:20px 10px 20px 30px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+            <h2 style="font-size:22px; color:#333;">Filtrar:</h2>
+            <span id="btnEliminarFiltros" onclick="eliminarTodosLosFiltros()" 
+                  style="display:none; font-size:16px; color:#ff6600; text-decoration:underline; cursor:pointer;">
+              Eliminar todos
+            </span>
+          </div>
+
+          <div style="margin-bottom:30px;">
+            <div onclick="toggleFiltro('filtroDisponibilidad', this)" 
+                 style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+              Disponibilidad <span style="float:right;">⬇</span>
+            </div>
+            <div id="filtroDisponibilidad" style="margin-top:10px;">
+              <label><input type="checkbox" onchange="mostrarEliminar()"> En existencia</label><br>
+              <label><input type="checkbox" onchange="mostrarEliminar()"> Agotado</label>
+            </div>
+          </div>
+
+          <div style="margin-bottom:30px;">
+            <div onclick="toggleFiltro('filtroPrecio', this)" 
+                 style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+              Precio <span style="float:right;">⬇</span>
+            </div>
+            <div id="filtroPrecio" style="margin-top:10px;">
+              <input type="number" placeholder="$ De" onchange="mostrarEliminar()" 
+                     style="margin-right:10px; padding:6px; width:90px;">
+              <input type="number" placeholder="$ Para" onchange="mostrarEliminar()" 
+                     style="padding:6px; width:90px;">
+            </div>
+          </div>
+        </aside>
+
+        <main style="flex-grow:1; padding:30px;"></main>
+
+      </div>
+    </div>
+  `;
+}
+
+function mostrarFiltrosAIO() {
+  document.getElementById('contenido').innerHTML = `
+    <div style="font-family:'Roboto', sans-serif;">
+
+      <div style="background-color:#000000; padding:15px 30px; display:flex; align-items:center; justify-content:space-between; border-radius:8px; position:relative;">
+        <div onclick="cargarCategorias()" 
+             style="position:absolute; left:30px; font-size:24px; color:#ffffff; cursor:pointer;">
+          ←
+        </div>
+        <div style="width:100%; text-align:center;">
+          <h1 style="color:#ffffff; margin:0; font-size:24px;">AIO</h1>
+        </div>
+      </div>
+
+      <div style="display:flex; margin-top:20px;">
+
+        <aside style="width:260px; padding:20px 10px 20px 30px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+            <h2 style="font-size:22px; color:#333;">Filtrar:</h2>
+            <span id="btnEliminarFiltros" onclick="eliminarTodosLosFiltros()" 
+                  style="display:none; font-size:16px; color:#ff6600; text-decoration:underline; cursor:pointer;">
+              Eliminar todos
+            </span>
+          </div>
+
+          <div style="margin-bottom:30px;">
+            <div onclick="toggleFiltro('filtroDisponibilidad', this)" 
+                 style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+              Disponibilidad <span style="float:right;">⬇</span>
+            </div>
+            <div id="filtroDisponibilidad" style="margin-top:10px;">
+              <label><input type="checkbox" onchange="mostrarEliminar()"> En existencia</label><br>
+              <label><input type="checkbox" onchange="mostrarEliminar()"> Agotado</label>
+            </div>
+          </div>
+
+          <div style="margin-bottom:30px;">
+            <div onclick="toggleFiltro('filtroPrecio', this)" 
+                 style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+              Precio <span style="float:right;">⬇</span>
+            </div>
+            <div id="filtroPrecio" style="margin-top:10px;">
+              <input type="number" placeholder="$ De" onchange="mostrarEliminar()" 
+                     style="margin-right:10px; padding:6px; width:90px;">
+              <input type="number" placeholder="$ Para" onchange="mostrarEliminar()" 
+                     style="padding:6px; width:90px;">
+            </div>
+          </div>
+        </aside>
+
+        <main style="flex-grow:1; padding:30px;"></main>
+
+      </div>
+    </div>
+  `;
+}
+
+function mostrarFiltrosImpresora() {
+  document.getElementById('contenido').innerHTML = `
+    <div style="font-family:'Roboto', sans-serif;">
+
+      <div style="background-color:#000000; padding:15px 30px; display:flex; align-items:center; justify-content:space-between; border-radius:8px; position:relative;">
+        <div onclick="cargarCategorias()" 
+             style="position:absolute; left:30px; font-size:24px; color:#ffffff; cursor:pointer;">
+          ←
+        </div>
+        <div style="width:100%; text-align:center;">
+          <h1 style="color:#ffffff; margin:0; font-size:24px;">IMPRESORA</h1>
+        </div>
+      </div>
+
+      <div style="display:flex; margin-top:20px;">
+
+        <aside style="width:260px; padding:20px 10px 20px 30px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+            <h2 style="font-size:22px; color:#333;">Filtrar:</h2>
+            <span id="btnEliminarFiltros" onclick="eliminarTodosLosFiltros()" 
+                  style="display:none; font-size:16px; color:#ff6600; text-decoration:underline; cursor:pointer;">
+              Eliminar todos
+            </span>
+          </div>
+
+          <div style="margin-bottom:30px;">
+            <div onclick="toggleFiltro('filtroDisponibilidad', this)" 
+                 style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+              Disponibilidad <span style="float:right;">⬇</span>
+            </div>
+            <div id="filtroDisponibilidad" style="margin-top:10px;">
+              <label><input type="checkbox" onchange="mostrarEliminar()"> En existencia</label><br>
+              <label><input type="checkbox" onchange="mostrarEliminar()"> Agotado</label>
+            </div>
+          </div>
+
+          <div style="margin-bottom:30px;">
+            <div onclick="toggleFiltro('filtroPrecio', this)" 
+                 style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+              Precio <span style="float:right;">⬇</span>
+            </div>
+            <div id="filtroPrecio" style="margin-top:10px;">
+              <input type="number" placeholder="$ De" onchange="mostrarEliminar()" 
+                     style="margin-right:10px; padding:6px; width:90px;">
+              <input type="number" placeholder="$ Para" onchange="mostrarEliminar()" 
+                     style="padding:6px; width:90px;">
+            </div>
+          </div>
+        </aside>
+
+        <main style="flex-grow:1; padding:30px;"></main>
+
+      </div>
+    </div>
+  `;
+}
     function cargarProductos() {
       document.getElementById('contenido').innerHTML = `
         <h2 style="text-align:center; margin-top:40px;">Sección de catálogo en construcción</h2>
@@ -464,9 +701,9 @@ function toggleFiltro(id, encabezado) {
   }
 }
 
-
   </script>
 </body>
 </html>
+
 
 
