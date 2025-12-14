@@ -24,9 +24,16 @@
     .titulo-barra {
       position: absolute;
       left: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       color: #ffffff;
       font-size: 20px;
       font-weight: bold;
+    }
+
+    .titulo-barra img {
+      height: 24px;
     }
 
     .buscador {
@@ -220,17 +227,22 @@
   </style>
 </head>
 <body>
+
   <!-- Barra negra superior -->
   <div class="barra-crear">
-    <div class="titulo-barra">H&L COMPUTER</div>
+    <div class="titulo-barra">
+      <img src="imagenes/logoHL1.png" alt="Logo H&L">
+      <span>H&L COMPUTER</span>
+    </div>
+
     <form class="buscador" onsubmit="alert('Buscando: ' + document.getElementById('buscar').value); return false;">
       <input type="text" id="buscar" placeholder="Buscar...">
       <button type="submit">Buscar</button>
     </form>
+
     <div class="iconos-derecha">
       <img src="imagenes/user.png" alt="Crear usuario" class="imagen-boton" onclick="document.getElementById('modalCrear').style.display='block'">
-    <img src="imagenes/carrito.png" alt="Carrito de compras" class="imagen-boton" onclick="document.getElementById('modalCarrito').style.display='block'">
-
+      <img src="imagenes/carrito.png" alt="Carrito de compras" class="imagen-boton" onclick="document.getElementById('modalCarrito').style.display='block'">
     </div>
   </div>
 
@@ -704,6 +716,7 @@ function toggleFiltro(id, encabezado) {
   </script>
 </body>
 </html>
+
 
 
 
