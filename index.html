@@ -498,9 +498,83 @@ function cargarCategorias() {
   <div style="font-size:16px; font-weight:600; color:#333333;">MOUSE</div>
 </div>
 
+<!-- TECLADO -->
+<div style="background-color:#ffffff; border:1px solid #dddddd; border-radius:12px;
+            padding:16px; text-align:center; cursor:pointer;"
+     onclick="mostrarFiltrosTeclado()">
+  <img src="imagenes/teclado.png" alt="Imagen de teclado"
+       style="width:100%; max-width:220px; margin:8px auto 12px; display:block;">
+  <div style="font-size:16px; font-weight:600; color:#333333;">TECLADO</div>
+</div>
+
   `;
 }
 
+function mostrarFiltrosTeclado() {
+  document.getElementById('contenido').innerHTML = `
+    <div style="font-family:'Roboto', sans-serif;">
+
+      <!-- BARRA NEGRA CON FLECHA Y TÍTULO CENTRADO -->
+      <div style="background-color:#000000; padding:15px 30px; display:flex; align-items:center; justify-content:space-between; border-radius:8px; position:relative;">
+        <div onclick="cargarCategorias()" 
+             style="position:absolute; left:30px; font-size:24px; color:#ffffff; cursor:pointer;">
+          ←
+        </div>
+        <div style="width:100%; text-align:center;">
+          <h1 style="color:#ffffff; margin:0; font-size:24px;">TECLADO</h1>
+        </div>
+      </div>
+
+      <div style="display:flex; margin-top:20px;">
+
+        <!-- FILTROS LATERALES -->
+        <aside style="width:260px; padding:20px 10px 20px 30px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+            <h2 style="font-size:22px; color:#333;">Filtrar:</h2>
+            <span id="btnEliminarFiltros" onclick="eliminarTodosLosFiltros()" 
+                  style="display:none; font-size:16px; color:#ff6600; text-decoration:underline; cursor:pointer;">
+              Eliminar todos
+            </span>
+          </div>
+
+          <!-- Disponibilidad -->
+          <div style="margin-bottom:30px;">
+            <div onclick="toggleFiltro('filtroDisponibilidad', this)" 
+                 style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+              Disponibilidad <span style="float:right;">⬇</span>
+            </div>
+            <div id="filtroDisponibilidad" style="margin-top:10px;">
+              <label><input type="checkbox" onchange="mostrarEliminar()"> En existencia</label><br>
+              <label><input type="checkbox" onchange="mostrarEliminar()"> Agotado</label>
+            </div>
+          </div>
+
+          <!-- Precio -->
+          <div style="margin-bottom:30px;">
+            <div onclick="toggleFiltro('filtroPrecio', this)" 
+                 style="cursor:pointer; font-weight:500; font-size:18px; color:#222;">
+              Precio <span style="float:right;">⬇</span>
+            </div>
+            <div id="filtroPrecio" style="margin-top:10px;">
+              <input type="number" placeholder="$ De" onchange="mostrarEliminar()" 
+                     style="margin-right:10px; padding:6px; width:90px;">
+              <input type="number" placeholder="$ Para" onchange="mostrarEliminar()" 
+                     style="padding:6px; width:90px;">
+            </div>
+          </div>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main style="flex-grow:1; padding:30px;">
+          <!-- Aquí irán los productos filtrados -->
+        </main>
+
+      </div>
+    </div>
+  `;
+}
+
+    
 function mostrarFiltrosMouse() {
   document.getElementById('contenido').innerHTML = `
     <div style="font-family:'Roboto', sans-serif;">
@@ -1187,6 +1261,7 @@ function toggleFiltro(id, encabezado) {
   </script>
 </body>
 </html>
+
 
 
 
