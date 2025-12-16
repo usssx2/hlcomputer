@@ -1264,6 +1264,7 @@ function mostrarFiltrosRamDesktop() {
   `;
 }
 
+
 function mostrarFiltrosLaptop() {
   document.getElementById('contenido').innerHTML = `
     <div style="font-family:'Roboto', sans-serif;">
@@ -1319,15 +1320,21 @@ function mostrarFiltrosLaptop() {
         </aside>
 
         <!-- CONTENIDO PRINCIPAL -->
-        <main style="flex-grow:1; padding:30px;">
-          <!-- Aquí irán los productos filtrados -->
+        <main style="flex-grow:1; padding:30px; display:flex; flex-wrap:wrap; gap:30px; justify-content:center;">
+
+          <!-- Tarjeta de producto -->
+          <div style="background-color:#ffffff; border:1px solid #dddddd; border-radius:12px; padding:16px; width:260px; text-align:center; cursor:pointer;"
+               onclick="mostrarDetalleLaptop()">
+            <img src="imagenes/lenovo.png" alt="Laptop Lenovo IdeaPad 1" style="width:100%; max-width:220px; margin-bottom:12px; border-radius:8px;">
+            <div style="font-size:16px; font-weight:600; color:#333333;">Laptop Lenovo IdeaPad 1 15IAU7</div>
+          </div>
+
         </main>
 
       </div>
     </div>
   `;
-}
-function mostrarFiltrosCelulares() {
+}function mostrarFiltrosCelulares() {
   document.getElementById('contenido').innerHTML = `
     <div style="font-family:'Roboto', sans-serif;">
 
@@ -1630,4 +1637,5 @@ function toggleFiltro(id, encabezado) {
   </script>
 </body>
 </html>
+
 
